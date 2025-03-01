@@ -1,0 +1,44 @@
+.custom-button {
+  border-radius: 44px;
+  width: 30%;
+  height: 50px; /* Set height */
+  position: absolute;
+  top: 30px;
+  right: 30px;
+
+  &.btn-outline {
+    color: white;
+    border-color: white;
+
+    &:hover {
+      background-color: #56CB96; // Change hover background color to primary button color
+    }
+
+    &:active {
+      background-color: #ffffff66; // Add active background color
+    }
+  }
+}
+
+.custom-button-relative {
+    border-radius: 44px;
+    width: 30%;
+    height: 50px; /* Set height */
+    position: absolute;
+    top: 30px;
+    right: 30px;
+  
+    &.btn-outline {
+      color: white;
+      border-color: white;
+  
+      &:hover {
+        background-color: #56CB96; // Change hover background color to primary button color
+      }
+  
+      &:active {
+        background-color: #ffffff66; // Add active background color
+      }
+    }
+  }
+  

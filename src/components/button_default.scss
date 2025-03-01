@@ -1,0 +1,22 @@
+
+
+.custom-button-relative {
+    border-radius: 44px;
+    width: 37%;
+    height: 50px; /* Set height */
+  
+  
+    &.btn-outline {
+      color: white;
+      border-color: white;
+  
+      &:hover {
+        background-color: #56CB96; // Change hover background color to primary button color
+      }
+  
+      &:active {
+        background-color: #ffffff66; // Add active background color
+      }
+    }
+  }
+  

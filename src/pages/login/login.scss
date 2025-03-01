@@ -1,0 +1,128 @@
+$form-background-color: #0E223A;
+$form-text-color: white;
+$form-control-background-color: #0A1C32;
+$form-control-text-color: #0E223A;
+$form-control-placeholder-color: #b0b0b0;
+$btn-primary-background-color: #56CB96;
+$btn-primary-hover-background-color: #e6e6e6;
+$btn-outline-hover-background-color: #ffffff33; // Add a semi-transparent white background for hover
+$btn-outline-active-background-color: #ffffff66; // Add a more opaque white background for active
+$logo-width: 15vw;
+$logo-max-width: 100px;
+$logo-margin: 30px;
+$element-height: 50px; // Define a variable for element height
+$text-button-color: #c1c1c1; // Define a variable for text button color
+
+
+
+// Form control styles
+.form-control {
+  background-color: $form-control-background-color;
+  color: $form-control-text-color;
+  border: none; /* Remove border */
+  border-radius: 7px; /* Add border radius */
+  text-align: right; /* Align input text to the right */
+  height: $element-height; /* Set height */
+  
+  &::placeholder {
+    color: $form-control-placeholder-color; /* Make the hint text color lighter */
+    text-align: right; /* Align placeholder text to the right */
+  }
+}
+
+
+
+// Form label styles
+.form-label {
+  color: $text-button-color; // Set label color
+}
+
+// Button primary styles
+.btn-primary {
+  background-color: $btn-primary-background-color; /* Change button color */
+  color: $form-control-text-color;
+  border: none;
+  border-radius: 44px; /* Change border radius */
+  width: 100%; /* Make button full width */
+  height: $element-height; /* Set height */
+  
+  &:hover {
+    background-color: $btn-primary-hover-background-color;
+    color: black; // Change text color to black on hover
+  }
+
+  &:active {
+    background-color: $btn-primary-hover-background-color;
+    color: black; // Change text color to black on hover  
+  }
+}
+
+// Button outline styles
+.btn-outline {
+  color: white;
+  border-color: white;
+  border-radius: 44px;
+  top: 30px;
+  right: 30px;
+  width: 30%;
+  height: $element-height; /* Set height */
+  
+  &:hover {
+    background-color: $btn-primary-background-color; // Change hover background color to primary button color
+  }
+  
+  &:active {
+    background-color: $btn-outline-active-background-color; // Add active background color
+  }
+}
+
+// Text button styles
+.text-button {
+  color: $text-button-color; // Set text button color
+  text-decoration: none; // Remove underline
+  
+  &:hover {
+    color: $btn-primary-background-color; // Change text color on hover
+  }
+}
+
+// Heading styles
+h1 {
+  color: #0090c3; // Set color
+  font-weight: bold; // Make it bold
+}
+
+// Landing image styles
+.landing-image {
+  width: 90%; // Make the image 20% smaller
+}
+
+// Welcome text styles
+.welcome-text {
+  font-weight: bold;
+  color: $form-text-color;
+}
+
+// Icon color styles
+.icon-color {
+  color: $text-button-color !important; // Set icon color to $text-button-color
+}
+
+// Fade-in animation styles
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms ease-in-out;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 1000ms ease-in-out;
+}
