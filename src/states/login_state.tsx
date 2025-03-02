@@ -5,6 +5,7 @@ class LoginState {
   isSuccess = false;
   isError = false;
   errorMessage = "";
+  token: string = "";
 
   constructor() {
     makeAutoObservable(this);
@@ -21,6 +22,16 @@ class LoginState {
   setError(error: boolean, message: string = "") {
     this.isError = error;
     this.errorMessage = message;
+  }
+
+  setToken(token: string) {
+    this.token = token;
+    localStorage.setItem('auth_token', token);
+  }
+
+  clearToken() {
+    this.token = "";
+    localStorage.removeItem('auth_token');
   }
 }
 

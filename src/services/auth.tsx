@@ -1,38 +1,26 @@
 import axios from 'axios';
 
-export const dummyLoginRequest = async (username: string, password: string) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (username === "test" && password === "password") {
-        resolve({
-          data: {
-            id: 1,
-            username: "testuser",
-            token: "dummy_token"
-          }
-        });
-      } else {
-        reject(new Error("Invalid username or password"));
-      }
-    }, 1000);
+const API_BASE_URL = 'http://flazzard-001-site1.qtempurl.com';
+
+export const loginRequest = async (username: string, password: string) => {
+  const response = await axios.post(`${API_BASE_URL}/api/auth/login`, {
+    username,
+    password
   });
+  return response.data;
 };
 
-export const dummyRegisterRequest = async (name: string, mobile: string, email: string, department: string) => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (name && mobile && email && department) {
-          resolve({
-            data: {
-              id: 1,
-              username: name,
-              token: "dummy_token"
-            }
-          });
-        } else {
-          reject(new Error("All fields are required"));
-        }
-      }, 1000);
-    });
-  };
-  
+export const registerRequest = async (phone: string, email: string, password: string, organization: string) => {
+  const response = await axios.post(`${API_BASE_URL}/api/Account/register`, {
+    phone,
+    email,
+    password,
+    organization
+  }, {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+  return response.data;
+};
+

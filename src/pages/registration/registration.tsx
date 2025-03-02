@@ -31,9 +31,14 @@ const FormComponent = () => {
     const [email, setEmail] = useState('');
     const [department, setDepartment] = useState('');
 
+    const navigate = useNavigate();
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        await handleRegister(name, mobile, email, department);
+        const success = await handleRegister(name, mobile, email, department);
+        if (success) {
+            navigate('/success');
+        }
     };
 
     return (

@@ -29,14 +29,19 @@ const ImageWithText = () => (
 const FormComponent = observer(() => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     if (!username || !password) {
       loginState.setError(true, "الرجاء إدخال البيانات بشكل صحيح");
       return;
     }
-    loginState.setError(false, ""); // Clear error message when fields are valid
-    await login(username, password);
+    loginState.setError(false, "");
+    
+    const success = await login(username, password);
+    if (success) {
+      navigate('/'); // Redirect to home page on successful login
+    }
   };
 
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {

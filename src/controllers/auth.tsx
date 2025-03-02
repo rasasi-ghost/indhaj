@@ -1,6 +1,6 @@
 import loginState from '../states/login_state';
 import userState from '../states/user';
-import { dummyLoginRequest, dummyRegisterRequest } from '../services/auth';
+import { loginRequest, registerRequest } from '../services/auth';
 import { storeUserData } from '../services/userService'; // Import the new service
 
 import registerState from '../states/register_state';
@@ -11,17 +11,30 @@ const dummyUser = {
   token: "dummy_token"
 };
 
-export const login = async (username: string, password: string) => {
+interface LoginResponse {
+  success: boolean;
+  statusCode: number;
+  message: string;
+  data: string; // JWT token
+}
+
+export const login = async (username: string, password: string): Promise<boolean> => {
   loginState.setLoading(true);
   loginState.setError(false);
 
   try {
-    const response = await dummyLoginRequest(username, password);
-    loginState.setSuccess(true);
-    userState.setUser(dummyUser);
-    storeUserData(dummyUser); // Store user data on successful login
+    const response: LoginResponse = await loginRequest(username, password);
+    
+    if (response.success && response.statusCode === 200) {
+      localStorage.setItem('auth_token', response.data); // Store token
+      loginState.setSuccess(true);
+      return true;
+    } else {
+      throw new Error(response.message || 'Login failed');
+    }
   } catch (error) {
-    loginState.setError(true, error.message);
+    loginState.setError(true, error.message || 'Login failed');
+    return false;
   } finally {
     loginState.setLoading(false);
   }
@@ -32,12 +45,18 @@ export const handleRegister = async (name: string, mobile: string, email: string
   registerState.setError(false);
 
   try {
-    const response = await dummyRegisterRequest(name, mobile, email, department);
+    const response = await registerRequest(mobile, email, name, department); // Using name as password temporarily
     registerState.setSuccess(true);
-    userState.setUser(dummyUser);
-    storeUserData(dummyUser); // Store user data on successful registration
+    userState.setUser({
+      id: response.id,
+      username: email,
+      token: response.token
+    });
+    storeUserData(response);
+    return true;
   } catch (error) {
-    registerState.setError(true, error.message);
+    registerState.setError(true, error.response?.data?.message || 'Registration failed');
+    return false;
   } finally {
     registerState.setLoading(false);
   }
