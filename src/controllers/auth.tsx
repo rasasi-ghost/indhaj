@@ -33,19 +33,23 @@ export const login = async (username: string, password: string): Promise<boolean
       throw new Error(response.message || 'Login failed');
     }
   } catch (error) {
-    loginState.setError(true, error.message || 'Login failed');
+    if (error instanceof Error) {
+      loginState.setError(true, error.message || 'Login failed');
+    } else {
+      loginState.setError(true, 'Login failed');
+    }
     return false;
   } finally {
     loginState.setLoading(false);
   }
 };
 
-export const handleRegister = async (name: string, mobile: string, email: string, department: string) => {
+export const handleRegister = async ( mobile: string, email: string, password: string, department: string) => {
   registerState.setLoading(true);
   registerState.setError(false);
 
   try {
-    const response = await registerRequest(mobile, email, name, department); // Using name as password temporarily
+    const response = await registerRequest(mobile, email, password, department);
     registerState.setSuccess(true);
     userState.setUser({
       id: response.id,
@@ -55,7 +59,11 @@ export const handleRegister = async (name: string, mobile: string, email: string
     storeUserData(response);
     return true;
   } catch (error) {
-    registerState.setError(true, error.response?.data?.message || 'Registration failed');
+    if (error instanceof Error) {
+      registerState.setError(true, (error as any).response?.data?.message || 'Registration failed');
+    } else {
+      registerState.setError(true, 'Registration failed');
+    }
     return false;
   } finally {
     registerState.setLoading(false);

@@ -1,0 +1,32 @@
+.custom-button-relative {
+  border-radius: 44px;
+  width: fit-content;
+  min-width: 120px; // Set a reasonable minimum width
+  max-width: 200px; // Constrain maximum width
+  padding-left: 15px;
+  padding-right: 15px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px; /* Set height */
+
+  &.btn-outline {
+    color: white;
+    border-color: white;
+
+    &:hover {
+      background-color: #56CB96; // Change hover background color to primary button color
+    }
+
+    &:active {
+      background-color: #ffffff66; // Add active background color
+    }
+  }
+}
+
+// Optional class for when you need an even smaller button
+.custom-button-small {
+  min-width: 100px;
+  max-width: 150px;
+}
+

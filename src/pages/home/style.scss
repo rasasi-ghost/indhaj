@@ -1,21 +1,47 @@
 $logo-width: 18vw;
 $logo-max-width: 150px;
+$primary-color: #0e223A;
+$accent-color: #56CB96;
+$secondary-color: #3088C8;
+$light-blue: #0090C3;
+
+// Responsive breakpoints
+$breakpoint-xs: 0;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
 
 .logo-home {
     width: $logo-width; /* Make the image size dynamic based on screen width */
-    max-width: $logo-max-width; /* Ensure the image does not exceed 100px */
- 
+    max-width: $logo-max-width; /* Ensure the image does not exceed 150px */
+    
+    @media (max-width: $breakpoint-md) {
+        width: 40vw;
+        max-width: 120px;
+    }
 }
 
 .nav-buttons .btn-link {
     text-decoration: none;
     color: #686868;
+    
+    @media (max-width: $breakpoint-md) {
+        font-size: 0.85rem;
+        padding: 0.25rem 0.5rem;
+    }
 
     &:hover,
     &:focus,
     &:active {
-        color: #56CB96;
+        color: $accent-color;
     }
+}
+
+// Ensure the hamburger toggle button has good visibility
+.navbar-toggler {
+    border: 1px solid rgba(0,0,0,0.1);
+    background-color: rgba(255,255,255,0.8);
 }
 
 .background-circles {
@@ -38,52 +64,186 @@ $logo-max-width: 150px;
     .circle-1 {
         width: 200px;
         height: 200px;
-        background-color: #56CB96;
+        background-color: $accent-color;
         top: 10%;
         left: 20%;
+        
+        @media (max-width: $breakpoint-md) {
+            width: 150px;
+            height: 150px;
+            top: 5%;
+            left: 5%;
+        }
     }
 
     .circle-2 {
         width: 300px;
         height: 300px;
-        background-color: #3088C8;
+        background-color: $secondary-color;
         top: 50%;
         left: 70%;
+        
+        @media (max-width: $breakpoint-md) {
+            width: 180px;
+            height: 180px;
+        }
     }
 
     .circle-3 {
         width: 150px;
         height: 150px;
-        background-color: #0090C3;
+        background-color: $light-blue;
         top: 80%;
         left: 30%;
+        
+        @media (max-width: $breakpoint-md) {
+            width: 100px;
+            height: 100px;
+        }
     }
 
     .circle-4 {
         width: 250px;
         height: 250px;
-        background-color: #56CB96;
+        background-color: $accent-color;
         top: 30%;
         left: 50%;
+        
+        @media (max-width: $breakpoint-md) {
+            width: 150px;
+            height: 150px;
+        }
     }
 
     .circle-5 {
         width: 100px;
         height: 100px;
-        background-color: #3088C8;
+        background-color: $secondary-color;
         top: 70%;
         left: 10%;
+        
+        @media (max-width: $breakpoint-md) {
+            width: 80px;
+            height: 80px;
+            left: 5%;
+        }
     }
 
     .circle-6 {
         width: 200px;
         height: 200px;
-        background-color: #0090C3;
+        background-color: $light-blue;
         top: 90%;
         left: 80%;
+        
+        @media (max-width: $breakpoint-md) {
+            width: 120px;
+            height: 120px;
+            left: 70%;
+        }
     }
 }
 
+// Add responsive spacers
+.spacer {
+    height: 50px;
+    
+    @media (max-width: $breakpoint-md) {
+        height: 30px;
+    }
+}
+
+// Responsive typography
+.responsive-heading {
+    font-size: calc(1.8em + 1vw);
+    
+    @media (max-width: $breakpoint-md) {
+        font-size: calc(1.3em + 1vw);
+    }
+    
+    @media (max-width: $breakpoint-sm) {
+        font-size: calc(1.1em + 1vw);
+    }
+}
+
+// Hero section image responsiveness
+.hero-image {
+    position: relative;
+    width: 150%;  // Increased from 130% to extend further beyond container
+    // left: -2%;   // Adjusted from -15% to push more to the left
+    max-width: none;
+    // transform: translateX(-2%); // Additional shift to left
+    
+    @media (max-width: $breakpoint-md) {
+        width: 100%;
+        left: 0;
+        margin-bottom: 20px;
+        transform: none; // Remove transform on mobile
+    }
+}
+
+// Container for hero image to handle overflow properly
+.hero-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+// Video section
+.video-preview-img {
+    position: absolute;
+    top: -26%;
+    width: 80%;
+    height: 150%;
+    border-radius: 44px;
+    filter: blur(5px);
+    
+    @media (max-width: $breakpoint-md) {
+        top: -15%;
+        width: 90%;
+        height: 130%;
+        border-radius: 20px;
+    }
+    
+    @media (max-width: $breakpoint-sm) {
+        top: -5%;
+        width: 95%;
+        height: 110%;
+    }
+}
+
+// Cards styling
+.service-cards, .testimonial-cards {
+    .card {
+        transition: transform 0.3s ease;
+        
+        &:hover {
+            transform: translateY(-5px);
+        }
+    }
+    
+    .card-img-top {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        
+        @media (max-width: $breakpoint-md) {
+            height: 180px;
+        }
+    }
+}
+
+// Make container fluid on mobile
+.home-page {
+    @media (min-width: $breakpoint-md) {
+        width: 82% !important;
+    }
+}
+
+// Parallax effect (unchanged)
 .parallax {
     perspective: 1px;
     overflow-x: hidden;

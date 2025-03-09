@@ -1,0 +1,34 @@
+.custom-input {
+  background-color: #0A1C32 !important;
+  border-radius: 0 7px 7px 0 !important;
+  border: 0px solid transparent !important;
+  color: #c1c1c1 !important;
+  
+  &::placeholder {
+    color: lighten(#c1c1c1, 20%) !important;
+  }
+
+  &:hover {
+    border: 0px solid #c1c1c1 !important;
+  }
+}
+
+.custom-input-icon {
+  background-color: #0A1C32 !important;
+  border-radius: 7px 0 0 7px !important;
+  border: 0px solid transparent !important;
+  color: #c1c1c1 !important;
+  
+  &:hover {
+    border: 0px solid #c1c1c1 !important;
+  }
+
+  i {
+    color: #c1c1c1 !important;
+  }
+}
+
+.input-group {
+  border-radius: 7px !important;
+  overflow: hidden;
+}

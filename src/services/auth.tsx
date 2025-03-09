@@ -1,26 +1,46 @@
-import axios from 'axios';
-
-const API_BASE_URL = 'http://flazzard-001-site1.qtempurl.com';
+const API_BASE_URL = 'https://flazzard-001-site1.qtempurl.com';
 
 export const loginRequest = async (username: string, password: string) => {
-  const response = await axios.post(`${API_BASE_URL}/api/auth/login`, {
-    username,
-    password
+  const response = await fetch(`${API_BASE_URL}/api/Account/login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      email: username,
+      password
+    })
   });
-  return response.data;
+  
+  if (!response.ok) {
+    // Handle HTTP errors
+    const errorData = await response.json().catch(() => ({ message: 'Unknown error' }));
+    throw new Error(errorData.message || `Error ${response.status}: ${response.statusText}`);
+  }
+  
+  return await response.json();
 };
 
 export const registerRequest = async (phone: string, email: string, password: string, organization: string) => {
-  const response = await axios.post(`${API_BASE_URL}/api/Account/register`, {
-    phone,
-    email,
-    password,
-    organization
-  }, {
+  const response = await fetch(`${API_BASE_URL}/api/Account/register`, {
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json'
-    }
+    },
+    body: JSON.stringify({
+      phone,
+      email,
+      password,
+      organization
+    })
   });
-  return response.data;
+  
+  if (!response.ok) {
+    // Handle HTTP errors
+    const errorData = await response.json().catch(() => ({ message: 'Unknown error' }));
+    throw new Error(errorData.message || `Error ${response.status}: ${response.statusText}`);
+  }
+  
+  return await response.json();
 };
 
